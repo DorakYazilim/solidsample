@@ -55,7 +55,6 @@ namespace ArdalisRating.Tests
             Assert.Equal(result.Amount, policy.Amount);
             // AssertPoliciesEqual(result, policy);
         }
-
         private void AssertPoliciesEqual(Policy result, Policy policy)
         {
             Assert.Equal(result,policy);
