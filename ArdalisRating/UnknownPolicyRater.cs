@@ -1,0 +1,34 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace ArdalisRating
+{
+    public class UnknownPolicyRater : Rater
+    {
+        public UnknownPolicyRater(RatingEngine engine,ConsoleLogger logger) : base ( engine, logger)
+        {
+
+        }
+        public override bool Equals(object obj)
+        {
+            return base.Equals(obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        public override void Rate(Policy policy)
+        {
+            //base.Rate(policy);
+            _logger.Log("Unknown policy type !!!");
+        }
+
+        public override string ToString()
+        {
+            return base.ToString();
+        }
+    }
+}

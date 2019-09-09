@@ -29,7 +29,9 @@ namespace ArdalisRating
             }
             catch
             {
-                return null;
+                //return null;
+                return new UnknownPolicyRater(engine, engine.Logger);
+
             }
         }
     }
