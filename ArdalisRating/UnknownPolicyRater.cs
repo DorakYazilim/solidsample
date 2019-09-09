@@ -6,10 +6,17 @@ namespace ArdalisRating
 {
     public class UnknownPolicyRater : Rater
     {
-        public UnknownPolicyRater(RatingEngine engine,ConsoleLogger logger) : base ( engine, logger)
-        {
+        private IRatingContext context;
 
+        public UnknownPolicyRater(IRatingContext context) :base (context)
+        {
+            this.context = context;
         }
+
+        //public UnknownPolicyRater(RatingEngine engine,ConsoleLogger logger) : base ( engine, logger)
+        //{
+
+        //}
         public override bool Equals(object obj)
         {
             return base.Equals(obj);

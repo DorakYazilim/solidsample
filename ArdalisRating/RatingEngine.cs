@@ -11,6 +11,15 @@ namespace ArdalisRating
     /// </summary>
     public class RatingEngine
     {
+        public IRatingContext Context { get; set; } = new DefaultRatingContext();
+
+        public RatingEngine()
+        {
+
+            Context.Engine = this;
+        }
+
+
         public ConsoleLogger Logger { get; set; } = new ConsoleLogger();
         public FilePolicySource PolicySource { get; set; } = new FilePolicySource();
         public PolicySerializer PolicySerializer { get; set; } = new PolicySerializer();
@@ -18,19 +27,26 @@ namespace ArdalisRating
         public decimal Rating { get; set; }
         public void Rate()
         {
-            Logger.Log("Starting rate.");
+            Context.Log("Starting rate.");
 
-            Logger.Log("Loading policy.");
+            Context.Log("Loading policy.");
 
             // load policy - open file policy.json
-            string policyJson = PolicySource.GetPolicyFromSource();
+            // string policyJson = PolicySource.GetPolicyFromSource();
+            string policyJson = Context.LoadPolicyFromFile();
 
-            var policy = PolicySerializer.GetPolicyFromJsonString(policyJson);
+            var policy = Context.GetPolicyFromJsonString(policyJson);
 
-            var factory = new RaterFactory();
+            // var policy = PolicySerializer.GetPolicyFromJsonString(policyJson);
 
-            var rater = factory.Create(policy, this);
-            rater?.Rate(policy);
+            var rater = Context.CreateRaterForPolicy(policy, Context);
+
+            //var factory = new RaterFactory();
+
+            // var rater = factory.Create(policy, this);
+            // rater?.Rate(policy);
+
+            rater.Rate(policy);
 
             Logger.Log("Rating completed.");            
             Console.ReadKey();
