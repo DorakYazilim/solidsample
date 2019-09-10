@@ -6,10 +6,10 @@
         {
         }
 
-        public RatingEngine Engine { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+        public RatingEngine Engine { get; set ; }
         // public ConsoleLogger Logger => new ConsoleLogger();
 
-        public ConsoleLogger Logger { get => new ConsoleLogger(); set => throw new System.NotImplementedException(); }
+        //public ConsoleLogger Logger { get => new ConsoleLogger(); set => throw new System.NotImplementedException(); }
 
         public Rater CreateRaterForPolicy(Policy policy, IRatingContext context)
         {
