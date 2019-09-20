@@ -4,7 +4,7 @@
     {
         void UpdateRating(decimal rating);
     }
-    public interface IRatingContext :ILogger
+    public interface IRatingContext :ILogger,IRatingUpdater
     {
         RatingEngine Engine { get; set; }
         //ConsoleLogger Logger { get; set; }

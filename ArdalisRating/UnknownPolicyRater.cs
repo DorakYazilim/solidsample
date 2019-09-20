@@ -8,10 +8,15 @@ namespace ArdalisRating
     {
         private IRatingContext context;
 
-        public UnknownPolicyRater(IRatingContext context) :base (context)
+        public UnknownPolicyRater(IRatingUpdater ratingUpdater) : base(ratingUpdater)
         {
-            this.context = context;
+
         }
+
+        //public UnknownPolicyRater(IRatingContext context) :base (context)
+        //{
+        //    this.context = context;
+        //}
 
         //public UnknownPolicyRater(RatingEngine engine,ConsoleLogger logger) : base ( engine, logger)
         //{

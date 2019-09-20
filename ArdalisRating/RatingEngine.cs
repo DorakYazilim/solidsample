@@ -11,11 +11,12 @@ namespace ArdalisRating
     /// </summary>
     public class RatingEngine
     {
+        private readonly ILogger _logger;
         public IRatingContext Context { get; set; } = new DefaultRatingContext();
 
-        public RatingEngine()
+        public RatingEngine(ILogger logger)
         {
-
+            _logger = logger;
             Context.Engine = this;
         }
 
@@ -27,10 +28,11 @@ namespace ArdalisRating
         public decimal Rating { get; set; }
         public void Rate()
         {
-            Context.Log("Starting rate.");
-
-            Context.Log("Loading policy.");
-
+            //Context.Log("Starting rate.");
+            //Context.Log("Loading policy.");
+            _logger.Log("Starting rate.");
+            _logger.Log("Loading policy.");
+            
             // load policy - open file policy.json
             // string policyJson = PolicySource.GetPolicyFromSource();
             string policyJson = Context.LoadPolicyFromFile();
